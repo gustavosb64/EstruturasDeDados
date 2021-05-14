@@ -1,5 +1,5 @@
-#ifndef PILHA_H
-#define PILHA_H
+#ifndef PILHA_SEQUENCIAL_H
+#define PILHA_SEQUENCIAL_H
 
 typedef int elem;
 
