@@ -2,7 +2,7 @@
 #define FILA_H
 
 typedef int elem;
-typedef struct fila_;
+typedef struct fila_ Fila;
 
 void Cria(Fila *F);
 void Esvazia(Fila *F);

@@ -1,5 +1,5 @@
-#ifndef FILA_ENCADEADA_H
-#define FILA_ENCADEADA_H
+#ifndef LISTA_ENCADEADA_H
+#define LISTA_ENCADEADA_H
 
 typedef int elem;
 
