@@ -230,7 +230,7 @@ void pos_ordem(Node *p){
     return;
 }
 
-//-----------------------------------------------//
+//----------------FUNÇÕES NÃO UTILIZADAS----------------------//
 Node* SearchParent(Node *node, elem x){
 
     if (node == NULL) return NULL;
@@ -275,23 +275,3 @@ Node* SearchWithParent(Node *node, Node **parent, elem x){
     return SearchWithParent(node->right,&(*parent), x);
 
 }
-
-/*
-void PrintEmOrdem(Node *node){
-
-    if(node == NULL) return;
-
-    if(node->left != NULL){
-        printf("left\n");
-        PrintPreOrdem(node->left);
-    }
-    printf("%d\n",node->x);
-    if(node->right != NULL){
-        printf("right\n");
-        PrintPreOrdem(node->right);
-    }
-
-    printf("return\n");
-    return;
-}
-*/

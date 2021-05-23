@@ -15,13 +15,6 @@ int main(int argc, char *argv[]){
     AddAVL(T, 8);
     AddAVL(T, 1);
     AddAVL(T, 5);
-    em_ordem(T->root); 
-    printf("\n---------------------\n");
-    pre_ordem(T->root); 
-    printf("\n---------------------\n");
-    pos_ordem(T->root); 
-    printf("\n---------------------\n");
-/*
     AddAVL(T, 22);
     AddAVL(T, 7);
     AddAVL(T, 10);
@@ -35,16 +28,19 @@ int main(int argc, char *argv[]){
     AddAVL(T, 8);
     AddAVL(T, 20);
 
-
+    printf("Em ordem: \n");
     em_ordem(T->root); 
     printf("\n---------------------\n");
+    printf("Pre ordem: \n");
     pre_ordem(T->root); 
-*/
+    printf("\n---------------------\n");
+    printf("Pos ordem: \n");
+    pos_ordem(T->root); 
+    printf("\n---------------------\n");
+ 
 
-/*
-    T->root = RotRL(&(T->root));
-
-    SearchAVL(T->root,4);
+    elem x = 4;
+    SearchAVL(T->root,x);
 
     switch(RemoveAVL(T, x)){
         case 1: printf("memoria cheia\n");
@@ -53,7 +49,10 @@ int main(int argc, char *argv[]){
                 break;
     }
 
-    elem x;
+    printf("Remove 4. Em ordem: \n");
+    em_ordem(T->root); 
+    printf("\n---------------------\n");
+ 
 
     x = 3;
     RemoveNode(&T->root, x);
@@ -69,27 +68,29 @@ int main(int argc, char *argv[]){
     RemoveNode(&T->root, x);
     x = 0;
     RemoveNode(&T->root, x);
-    printf("\n---------------------\n");
-    pre_ordem(T->root); 
-*/
-/*
-    printf("\n---------------------\n");
-    x = 4;
-    RemoveNode(T, x);
-    printf("\n---------------------\n");
-    x = 7;
-    RemoveNode(T, x);
-    printf("\n---------------------\n");
-    x = 22;
-    RemoveNode(T, x);
-    printf("\n---------------------\n");
-    x = 22;
+    printf("Em ordem: \n");
+    em_ordem(T->root); 
 
-//  remover(&(T->root), &x);
+    printf("\n---------------------\n");
+    x = 1;
+    RemoveNode(&T->root, x);
+    x = 2;
+    RemoveNode(&T->root, x);
+    x = 6;
+    RemoveNode(&T->root, x);
+    x = 10;
+    RemoveNode(&T->root, x);
+    x = 20;
+    RemoveNode(&T->root, x);
 
-    PrintEmOrdem(T->root); 
+    printf("Em ordem: \n");
+    em_ordem(T->root); 
 
-*/
+    //Removendo elementos inexistentes
+    RemoveNode(&T->root, x);
+    RemoveNode(&T->root, x);
+    RemoveNode(&T->root, x);
+
     FreeTree(T->root);
     free(T);
 

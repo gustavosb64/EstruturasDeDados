@@ -27,7 +27,7 @@ void em_ordem(Node *node);
 void pre_ordem(Node *p);
 void pos_ordem(Node *p);
 
-//---------------------------------------//
+//----------------FUNÇÕES NÃO UTILIZADAS----------------------//
 Node* SearchParent(Node *node, elem x);
 Node* SearchLargestWithParent(Node *node, Node **aux_node_parent);
 Node* SearchWithParent(Node *node, Node **aux_node_parent, elem x);
