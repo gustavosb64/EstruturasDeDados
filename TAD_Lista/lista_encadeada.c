@@ -34,7 +34,7 @@ int IsEmptyList(List *list){
     else return 0;
 }
 
-int AddLastElem(List *list, elem e){
+int AddLastElemList(List *list, elem e){
     Node *aux_node = (Node *) malloc(sizeof(Node));
     if (aux_node == NULL) return 1;
 
@@ -87,7 +87,7 @@ int AddMiddleElem(List *list, elem e, int index){
     }
 
     if (index == (list->n_elem - 1)){
-        if (AddLastElem(list, e)) return 1;
+        if (AddLastElemList(list, e)) return 1;
         return 0;
     }
 
@@ -110,7 +110,7 @@ int AddMiddleElem(List *list, elem e, int index){
     return 0;
 }
 
-int RemoveLastElem(List *list, elem *e){
+int RemoveLastElemList(List *list, elem *e){
 
     if(IsEmptyList(list)) return 1;
 
@@ -153,7 +153,7 @@ int RemoveOddEven(List *list, elem *e){
     if(IsEmptyList(list)) return 1;
 
     if((list->n_elem)%2) RemoveFirstElem(list, e);
-    else RemoveLastElem(list, e);
+    else RemoveLastElemList(list, e);
 
     return 0;
 }
@@ -162,7 +162,7 @@ int InList(List *list, elem e){
 
     if(IsEmptyList(list)) return -1;
 
-    AddLastElem(list, e);
+    AddLastElemList(list, e);
 
     Node *node = list->first;
     while (node->val != e)
@@ -171,7 +171,7 @@ int InList(List *list, elem e){
     int check = 1;
     if (node->next == NULL) check = 0;
     
-    RemoveLastElem(list, &e);
+    RemoveLastElemList(list, &e);
 
     return check;
 }
@@ -205,7 +205,7 @@ Node* SearchElem(List *list, elem e, int *error, int *index){
         return NULL;
     }
 
-    AddLastElem(list, e);
+    AddLastElemList(list, e);
 
     Node *dest_node;
     dest_node = list->first;
@@ -223,7 +223,7 @@ Node* SearchElem(List *list, elem e, int *error, int *index){
     }
     else p = dest_node;
     
-    RemoveLastElem(list, &e);
+    RemoveLastElemList(list, &e);
 
     return p;
 }
@@ -251,7 +251,7 @@ int SearchRemoveElem(List *list, elem *e, elem *dest_e){
         if (RemoveFirstElem(list, dest_e)) return 1;
     }
     else if (index == (list->n_elem-1)){
-        if (RemoveLastElem(list, dest_e)) return 1;
+        if (RemoveLastElemList(list, dest_e)) return 1;
     }
     else{
         RemoveMiddleElem(dest_node, dest_e);
@@ -273,7 +273,7 @@ int IndexRemoveElem(List *list, elem *e, int index){
     }
 
     if (index == (list->n_elem - 1)){
-        if (RemoveLastElem(list, e)) return 1;
+        if (RemoveLastElemList(list, e)) return 1;
         return 0;
     }
 

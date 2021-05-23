@@ -28,21 +28,21 @@ List* CreateList(){
     return list;
 }
 
-Node* GetNode(List *list){
+Node* GetNodeList(List *list){
     return list->first;
 }
 
-int IsEmpty(List *list){
+int IsEmptyList(List *list){
     if (list->first == NULL) return 1;
     else return 0;
 }
 
-int AddLastElem(List *list, Info info, char type){
+int AddLastElemList(List *list, Info info, char type){
     
     Node *node = (Node *) malloc(sizeof(Node));
     if (node == NULL) return 1;
 
-    if(IsEmpty(list)){
+    if(IsEmptyList(list)){
         list->first = node;
         node->prev = NULL;
     }
@@ -60,9 +60,9 @@ int AddLastElem(List *list, Info info, char type){
     return 0;
 }
 
-int RemoveLastElem(List *list, Info *info){
+int RemoveLastElemList(List *list, Info *info){
 
-    if(IsEmpty(list)) return 1;
+    if(IsEmptyList(list)) return 1;
 
     Node *aux_node = list->last;
     *info = list->last->info; 
@@ -83,7 +83,7 @@ int RemoveLastElem(List *list, Info *info){
 
 int SearchElem(List *list, elem x, int *error){
 
-    if(IsEmpty(list)){
+    if(IsEmptyList(list)){
         *error = 1;
         return 0;
     }
@@ -107,7 +107,7 @@ int SearchElemSubRoutine(Node *node, elem x){
 
 int AreEqual(List *L1, List *L2, int *error){
 
-    if(IsEmpty(L1) || IsEmpty(L2)){
+    if(IsEmptyList(L1) || IsEmptyList(L2)){
         *error = 1;
         return 0;
     }
@@ -136,7 +136,7 @@ int AreEqualNodes(Node *node1, Node *node2, int *error){
 
 int PrintList(List *list){
 
-    if(IsEmpty(list)) return 1;
+    if(IsEmptyList(list)) return 1;
     
     PrintNodes(list->first, 0);
 
@@ -174,27 +174,25 @@ int PrintNodes(Node *node, int cont){
     return 0;
 }
 
-    
-
-/*
+/* FUNÇÕES NÃO TESTADAS
 int SearchElemSubRoutine(Node *node, elem x){
 
     [...]
 
     Info info;
     info.atom = x;
-    if(AddLastElem(list, info, 1)){
+    if(AddLastElemList(list, info, 1)){
         *error = 2;
         return 0;
     }
 
     if(SearchElemSubRoutine(list->first, x) == list->last){
-        RemoveLastElem(list, &info);
+        RemoveLastElemList(list, &info);
         *error = 0;
         return 0;
     }
      
-    RemoveLastElem(list, &info);
+    RemoveLastElemList(list, &info);
     *error = 0;
     return 1;
 
@@ -215,11 +213,3 @@ int SearchElemSubRoutine(Node *node, elem x){
 }
 
 */
-
-
-
-
-
-
-
-

@@ -8,8 +8,8 @@ typedef union info_ Info;
 
 List* CreateList();
 Node* CreateNode();
-int AddLastElem(List *list, Info info, char type);
-int RemoveLastElem(List *list, Info *info);
+int AddLastElemList(List *list, Info info, char type);
+int RemoveLastElemList(List *list, Info *info);
 int SearchElem(List *list, elem x, int *error);
 int SearchElemSubRoutine(Node *node, elem x);
 int AreEqual(List *L1, List *L2, int *error);
