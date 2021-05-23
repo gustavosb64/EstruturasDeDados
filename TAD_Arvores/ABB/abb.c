@@ -83,18 +83,6 @@ int InsertNode(Node **node, elem x){
     return 0;
 }
 
-int RemoveABB(Tree *T, elem x){
-
-    if (IsEmptyTree(T)) return 1;
-
-    Node *aux_node;
-    aux_node = SearchABB(T->root, x);
-    if (aux_node == NULL) return 2;
-
-//    return RemoveNode(&aux_node, x);
-    return 3;
-}
-
 Node* SearchGreatest(Node *node, Node **aux_node_parent){
     Node *aux_node = node;
 
@@ -163,7 +151,6 @@ int RemoveNode(Tree *T, elem x){
     return 0;
 }
 
-// -----PARA NÃO ABB------
 void PrintPreOrdem(Node *node){
 
     if(node == NULL) return;
@@ -185,26 +172,6 @@ void PrintPosOrdem(Node *node){
     return;
 }
 
-/*
-void PrintEmOrdem(Node *node){
-
-    if(node == NULL) return;
-
-    if(node->left != NULL){
-        printf("left\n");
-        PrintPreOrdem(node->left);
-    }
-    printf("%d\n",node->x);
-    if(node->right != NULL){
-        printf("right\n");
-        PrintPreOrdem(node->right);
-    }
-
-    printf("return\n");
-    return;
-}
-*/
-
 void PrintEmOrdem(Node *p){
     if (p != NULL){
         PrintEmOrdem(p->left); 
@@ -225,54 +192,3 @@ void FreeTree(Node *p){
 
     return;
 }
-
-//------------------
-/*
-elem busca_maior(Node **p){
-    Node *aux;
-    aux = *p;
-
-    while (aux->right != NULL)
-        aux = aux->right;
-
-    return aux->x;
-}
-
-int remover(Node **p, elem *x){
-    Node *aux;
-
-    if (*p == NULL) return 0;
-
-    if ((*p)->x > *x) return remover(&(*p)->left, x);
-
-    if ((*p)->x < *x) return remover(&(*p)->right, x);
-
-    //Se nenhum dos anteriores, o próprio p->x é igual a x
-
-    //caso 1: o nó não tem filhos:
-    if (((*p)->left == NULL) && ((*p)->right == NULL)){
-        free(*p);
-        *p = NULL;
-        return 1;
-    }
-
-    //caso 2a: só há o filho direito
-    if ((*p)->left == NULL){
-        aux = *p;
-        *p = (*p)->right;
-        free(aux);
-        return 1;
-    }
-    //caso 2b: só há o filho esquerdo
-    if ((*p)->right == NULL){
-        aux = *p;
-        *p = (*p)->left;
-        free(aux);
-        return 1;
-    }
-
-    //caso 3: há dois filhos
-    (*p)->x = busca_maior(&(*p)->left);
-    return remover(&(*p)->left, &(*p)->x); 
-}
-*/

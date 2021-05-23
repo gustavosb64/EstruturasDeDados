@@ -22,36 +22,22 @@ int main(int argc, char *argv[]){
     AddABB(T, 10);
 
     PrintEmOrdem(T->root); 
-/*
-    SearchABB(T->root,4);
-
-    switch(RemoveABB(T, x)){
-        case 1: printf("memoria cheia\n");
-                break;
-        case 2: printf("nao achou\n");
-                break;
-    }
-
-*/
     elem x;
 
-/*
     printf("\n---------------------\n");
-    x = 4;
-    RemoveNode(T, x);
-    printf("\n---------------------\n");
-    x = 7;
-    RemoveNode(T, x);
-    printf("\n---------------------\n");
-    x = 22;
-    RemoveNode(T, x);
-*/
-    printf("\n---------------------\n");
+    printf("Removendo 0:\n");
     x = 0;
     RemoveNode(T, x);
-
-//  remover(&(T->root), &x);
-
+    PrintEmOrdem(T->root); 
+    printf("\n---------------------\n");
+    printf("Removendo 22:\n");
+    x = 22;
+    RemoveNode(T, x);
+    PrintEmOrdem(T->root); 
+    printf("\n---------------------\n");
+    printf("Removendo 5:\n");
+    x = 5;
+    RemoveNode(T, x);
     PrintEmOrdem(T->root); 
 
     FreeTree(T->root);
