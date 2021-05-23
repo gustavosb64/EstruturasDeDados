@@ -29,7 +29,7 @@ List* CreateList(){
     return list;
 }
 
-int IsEmpty(List *list){
+int IsEmptyList(List *list){
     if (list->n_elem == 0) return 1;
     else return 0;
 }
@@ -38,7 +38,7 @@ int AddLastElem(List *list, elem e){
     Node *aux_node = (Node *) malloc(sizeof(Node));
     if (aux_node == NULL) return 1;
 
-    if (IsEmpty(list)){
+    if (IsEmptyList(list)){
         list->first = aux_node;
         list->first->prev = NULL;
     }
@@ -61,7 +61,7 @@ int AddFirstElem(List *list, elem e){
     Node *aux_node = (Node *) malloc(sizeof(Node));
     if (aux_node == NULL) return 1;
 
-    if (IsEmpty(list)){
+    if (IsEmptyList(list)){
         list->first = aux_node;
         list->first->prev = NULL;
     }
@@ -76,13 +76,6 @@ int AddFirstElem(List *list, elem e){
     list->first->prev = NULL;
 
     list->n_elem++;
-f (res <= 0){
-        if (res <= (-30)) printf("P");
-        else printf("B");
-        return 0;
-    }
-    printf("R");
-    return 0;
     return 0;
 }
 
@@ -119,7 +112,7 @@ int AddMiddleElem(List *list, elem e, int index){
 
 int RemoveLastElem(List *list, elem *e){
 
-    if(IsEmpty(list)) return 1;
+    if(IsEmptyList(list)) return 1;
 
     *e = list->last->val;
     
@@ -138,7 +131,7 @@ int RemoveLastElem(List *list, elem *e){
 
 int RemoveFirstElem(List *list, elem *e){
 
-    if(IsEmpty(list)) return 1;
+    if(IsEmptyList(list)) return 1;
 
     *e = list->first->val;
     
@@ -157,7 +150,7 @@ int RemoveFirstElem(List *list, elem *e){
 
 int RemoveOddEven(List *list, elem *e){
     
-    if(IsEmpty(list)) return 1;
+    if(IsEmptyList(list)) return 1;
 
     if((list->n_elem)%2) RemoveFirstElem(list, e);
     else RemoveLastElem(list, e);
@@ -167,7 +160,7 @@ int RemoveOddEven(List *list, elem *e){
 
 int InList(List *list, elem e){
 
-    if(IsEmpty(list)) return -1;
+    if(IsEmptyList(list)) return -1;
 
     AddLastElem(list, e);
 
@@ -183,41 +176,9 @@ int InList(List *list, elem e){
     return check;
 }
 
-/*SearchElem com nó sentinela (NÃO TESTEI)
-Node* SearchElem(List *list, elem e, int *error, int *index){
+Node* SearchElemList(List *list, elem e, int *error, int *index){
 
-    if(IsEmpty(list)){
-        *error = 1;
-        return NULL;
-    }
-
-    AddLastElem(list, e);
-
-    Node *dest_node;
-    dest_node = list->first;
-    *index = 0;
-
-    while (dest_node->val != e){
-        dest_node = dest_node->next;
-        *index = *index+1;
-    }
-
-    Node *p; 
-    if (dest_node->next == NULL){
-         p = NULL;
-        *error = 2;
-    }
-    else p = dest_node;
-    
-    RemoveLastElem(list, &e);
-
-    return p;
-}
-*/
-
-Node* SearchElem(List *list, elem e, int *error, int *index){
-
-    if(IsEmpty(list)){
+    if(IsEmptyList(list)){
         *error = 1;
         return NULL;
     }
@@ -238,13 +199,13 @@ Node* SearchElem(List *list, elem e, int *error, int *index){
 
 int SearchRemoveElem(List *list, elem *e, elem *dest_e){
 
-    if(IsEmpty(list)) return 1;
+    if(IsEmptyList(list)) return 1;
 
     Node *dest_node;
     int error = 0;
     int index = 0;
 
-    dest_node = SearchElem(list, *e, &error, &index);
+    dest_node = SearchElemList(list, *e, &error, &index);
     switch (error){
         case 1: 
             return 1;
@@ -257,17 +218,20 @@ int SearchRemoveElem(List *list, elem *e, elem *dest_e){
     if (index == 0){
         if (RemoveFirstElem(list, dest_e)) return 1;
     }
-    if (index == (list->n_elem-1)){
+    else if (index == (list->n_elem-1)){
         if (RemoveLastElem(list, dest_e)) return 1;
     }
-    else RemoveMiddleElem(dest_node, dest_e);
+    else{
+        RemoveMiddleElem(dest_node, dest_e);
+        list->n_elem--;
+    }
 
     return 0;
 }
 
 int IndexRemoveElem(List *list, elem *e, int index){
 
-    if(IsEmpty(list)) return 1;
+    if(IsEmptyList(list)) return 1;
     if (index > list->n_elem) return 2;
     if (index < 0) return 3;
     
@@ -289,6 +253,7 @@ int IndexRemoveElem(List *list, elem *e, int index){
     }
    
     RemoveMiddleElem(aux, e);
+    list->n_elem--;
 
     return 0;
 }
@@ -313,7 +278,7 @@ int RemoveMiddleElem(Node *node, elem *e){
 
 int PrintList(List *list){
 
-    if(IsEmpty(list)) return 1;
+    if(IsEmptyList(list)) return 1;
     
     Node *aux_node = list->first;
     
@@ -321,6 +286,27 @@ int PrintList(List *list){
         printf("%d\n",aux_node->val);
         aux_node = aux_node->next;
     }
+
+    return 0;
+}
+
+int FreeList(List *list){
+    
+    if(IsEmptyList(list)){
+        free(list->first); 
+        free(list);
+        return 1;
+    }
+
+    Node *aux_node = list->first;
+    Node *aux_node2;
+    while(aux_node!=NULL){
+        aux_node2 = aux_node;
+        aux_node = aux_node->next;
+        free(aux_node2);
+    }
+    free(aux_node);
+    free(list);
 
     return 0;
 }
